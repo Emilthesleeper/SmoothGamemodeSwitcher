@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "smoothgamemodeswitcher",
+  "version": "1.0",
+  "name": "Smooth Gamemode Switcher",
+  "description": "A mod that let's you change gamemodes in your desired order quickly and efficiently.",
+  "authors": [],
+  "contact": {},
+  "license": "GPL-3.0",
+  "icon": "assets/smoothgamemodeswitcher/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-datagen": [
+      "com.emilsleeper.client.SmoothgamemodeswitcherDataGenerator"
+    ],
+    "client": [
+      "com.emilsleeper.client.SmoothgamemodeswitcherClient"
+    ],
+    "main": [
+      "com.emilsleeper.Smoothgamemodeswitcher"
+    ],
+    "modmenu": [
+      "com.emilsleeper.client.ModMenuIntegration"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.15.7",
+    "fabric-api": "*",
+    "minecraft": ">=1.21 <1.22"
+  },
+  "suggests": {
+    "modmenu": ">=11.0.3",
+    "cloth-config": ">=15.0.126"
+  }
+}

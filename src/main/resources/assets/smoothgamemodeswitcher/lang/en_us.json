@@ -1,0 +1,9 @@
+{
+  "smoothgamemodeswitcher.keybind.switch_gamemode": "Smooth Gamemode Switch",
+  "smoothgamemodeswitcher.category": "Smooth Gamemode Switcher",
+  "options.smoothgamemodeswitcher.title": "Smooth Gamemode Switcher",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance": "Disable Flying Block Tolerance",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance.tooltip": "Disables flying mode when switching to creative at smaller or equaled height over block below(Block height is part of the calculation)",
+  "options.smoothgamemodeswitcher.gamemodeOrder": "Gamemode Order",
+  "options.smoothgamemodeswitcher.gamemodeOrder.tooltip": "Add the gamemode numbers to change the order you will switch gamemodes to.\n\n0: Survival\n1: Creative\n2: Adventure\n3: Spectator\n\nOnly integer values are allowed.\nIf you add more than 4 gamemodes, they will be removed.\n§lDUPLICATES ARE NOT ALLOWED!"
+}
