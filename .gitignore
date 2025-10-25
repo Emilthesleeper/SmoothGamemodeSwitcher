@@ -4,3 +4,9 @@
 /out/
 /out/client/classes/
 /out/production/classes/
+/.gradle/
+/.idea/
+/build/
+/gradle/
+/out/
+/run/
