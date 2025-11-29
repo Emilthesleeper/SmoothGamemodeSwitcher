@@ -1,0 +1,9 @@
+{
+  "smoothgamemodeswitcher.keybind.switch_gamemode": "Płynne przełączanie trybów gry",
+  "smoothgamemodeswitcher.category": "Płynne przełączanie trybów gry",
+  "options.smoothgamemodeswitcher.title": "Płynne przełączanie trybów gry",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance": "Wyłącz tolerancję lotu nad blokami",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance.tooltip": "Wyłącza tryb lotu podczas przełączania na tryb kreatywny na wysokości mniejszej lub równej wysokości bloku poniżej (wysokość bloku jest uwzględniana w obliczeniach)",
+  "options.smoothgamemodeswitcher.gamemodeOrder": "Kolejność trybów gry",
+  "options.smoothgamemodeswitcher.gamemodeOrder.tooltip": "Dodaj numery trybów gry, aby zmienić kolejność ich przełączania.\n\n0: Przetrwanie\n1: Kreatywny\n2: Przygoda\n3: Widz\n\nDopuszczalne są tylko wartości całkowite.\nJeśli dodasz więcej niż 4 tryby gry, zostaną one usunięte.\n§lNIE SĄ DOZWOLONE POWTÓRZENIA!"
+}

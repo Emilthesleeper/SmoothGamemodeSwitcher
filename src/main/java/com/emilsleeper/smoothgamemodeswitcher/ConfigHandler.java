@@ -1,4 +1,4 @@
-package com.emilsleeper;
+package com.emilsleeper.smoothgamemodeswitcher;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

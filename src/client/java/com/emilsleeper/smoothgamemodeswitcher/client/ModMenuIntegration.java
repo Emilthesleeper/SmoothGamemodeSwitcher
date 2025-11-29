@@ -1,6 +1,6 @@
-package com.emilsleeper.client;
+package com.emilsleeper.smoothgamemodeswitcher.client;
 
-import com.emilsleeper.ConfigScreen;
+import com.emilsleeper.smoothgamemodeswitcher.ConfigScreen;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 

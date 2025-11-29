@@ -1,4 +1,4 @@
-package com.emilsleeper;
+package com.emilsleeper.smoothgamemodeswitcher;
 
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;

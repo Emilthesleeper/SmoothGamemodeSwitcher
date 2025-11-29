@@ -1,0 +1,9 @@
+{
+  "smoothgamemodeswitcher.keybind.switch_gamemode": "Cambio de modo de juego suave",
+  "smoothgamemodeswitcher.category": "Cambio de modo de juego suave",
+  "options.smoothgamemodeswitcher.title": "Cambio de modo de juego suave",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance": "Desactivar tolerancia de vuelo sobre bloques",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance.tooltip": "Desactiva el modo vuelo al cambiar a creativo a una altura menor o igual sobre un bloque (la altura del bloque se incluye en el cálculo)",
+  "options.smoothgamemodeswitcher.gamemodeOrder": "Orden de modos de juego",
+  "options.smoothgamemodeswitcher.gamemodeOrder.tooltip": "Añade los números de los modos de juego para cambiar el orden de cambio.\n\n0: Supervivencia\n1: Creativo\n2: Aventura\n3: Espectador\n\nSolo se permiten valores enteros.\nSi añades más de 4 modos de juego, serán eliminados.\n§l¡NO SE PERMITEN DUPLICADOS!"
+}

@@ -1,0 +1,9 @@
+{
+  "smoothgamemodeswitcher.keybind.switch_gamemode": "Vloeiende spelmodus wissel",
+  "smoothgamemodeswitcher.category": "Vloeiende spelmodus wisselaar",
+  "options.smoothgamemodeswitcher.title": "Vloeiende spelmodus wisselaar",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance": "Vliegtolerantie uitschakelen",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance.tooltip": "Schakel de vliegmodus uit bij het wisselen naar creatief op een hoogte die kleiner of gelijk is aan de hoogte van het blok eronder (blokhoogte maakt deel uit van de berekening)",
+  "options.smoothgamemodeswitcher.gamemodeOrder": "Spelmodus volgorde",
+  "options.smoothgamemodeswitcher.gamemodeOrder.tooltip": "Voeg de spelmodusnummers toe om de volgorde van wisselen aan te passen.\n\n0: Overleving\n1: Creatief\n2: Avontuur\n3: Toeschouwer\n\nAlleen hele getallen zijn toegestaan.\nAls je meer dan 4 spelmodi toevoegt, worden deze verwijderd.\n§lDUBBELE WAARDEN ZIJN NIET TOEGESTAAN!"
+}

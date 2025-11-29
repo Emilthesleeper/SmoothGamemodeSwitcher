@@ -1,0 +1,9 @@
+{
+  "smoothgamemodeswitcher.keybind.switch_gamemode": "부드러운 게임 모드 전환",
+  "smoothgamemodeswitcher.category": "부드러운 게임 모드 전환",
+  "options.smoothgamemodeswitcher.title": "부드러운 게임 모드 전환",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance": "비행 블록 허용 범위 비활성화",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance.tooltip": "크리에이티브 모드로 전환할 때 블록 위의 높이가 일정 이하일 경우 비행 모드를 비활성화합니다 (블록 높이가 계산에 포함됨)",
+  "options.smoothgamemodeswitcher.gamemodeOrder": "게임 모드 순서",
+  "options.smoothgamemodeswitcher.gamemodeOrder.tooltip": "게임 모드 번호를 추가하여 전환 순서를 변경하세요.\n\n0: 서바이벌\n1: 크리에이티브\n2: 어드벤처\n3: 관전\n\n정수 값만 허용됩니다.\n4개 이상의 게임 모드를 추가하면 제거됩니다.\n§l중복은 허용되지 않습니다!"
+}

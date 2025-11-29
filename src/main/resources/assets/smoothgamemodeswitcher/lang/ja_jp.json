@@ -1,0 +1,9 @@
+{
+  "smoothgamemodeswitcher.keybind.switch_gamemode": "スムーズなゲームモード切り替え",
+  "smoothgamemodeswitcher.category": "スムーズなゲームモード切り替え",
+  "options.smoothgamemodeswitcher.title": "スムーズなゲームモード切り替え",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance": "ブロック上での飛行許容範囲を無効化",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance.tooltip": "クリエイティブモードに切り替える際、下のブロックからの高さが一定以下の場合に飛行モードを無効にします（ブロックの高さも計算に含まれます）",
+  "options.smoothgamemodeswitcher.gamemodeOrder": "ゲームモードの順序",
+  "options.smoothgamemodeswitcher.gamemodeOrder.tooltip": "ゲームモードの切り替え順序を変更するには、ゲームモードの番号を追加してください。\n\n0: サバイバル\n1: クリエイティブ\n2: アドベンチャー\n3: スペクテイター\n\n整数値のみ使用可能です。\n4つ以上のゲームモードを追加した場合、それらは削除されます。\n§l重複は許可されていません！"
+}

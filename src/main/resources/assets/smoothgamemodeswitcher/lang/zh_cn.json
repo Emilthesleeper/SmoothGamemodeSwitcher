@@ -1,0 +1,9 @@
+{
+  "smoothgamemodeswitcher.keybind.switch_gamemode": "流畅游戏模式切换",
+  "smoothgamemodeswitcher.category": "流畅游戏模式切换器",
+  "options.smoothgamemodeswitcher.title": "流畅游戏模式切换器",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance": "禁用飞行方块容差",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance.tooltip": "在切换到创造模式时，如果高度小于或等于下方方块（方块高度已计入计算），则禁用飞行模式",
+  "options.smoothgamemodeswitcher.gamemodeOrder": "游戏模式顺序",
+  "options.smoothgamemodeswitcher.gamemodeOrder.tooltip": "添加游戏模式编号以更改切换顺序。\n\n0: 生存模式\n1: 创造模式\n2: 冒险模式\n3: 旁观模式\n\n只允许整数值。\n如果添加超过4个游戏模式，多余的将被移除。\n§l不允许重复！"
+}

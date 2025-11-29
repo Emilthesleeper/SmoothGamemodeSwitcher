@@ -1,0 +1,9 @@
+{
+  "smoothgamemodeswitcher.keybind.switch_gamemode": "Troca Suave de Modo de Jogo",
+  "smoothgamemodeswitcher.category": "Troca Suave de Modo de Jogo",
+  "options.smoothgamemodeswitcher.title": "Troca Suave de Modo de Jogo",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance": "Desativar tolerância de voo sobre blocos",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance.tooltip": "Desativa o modo de voo ao mudar para o criativo em alturas iguais ou menores que a altura do bloco abaixo (a altura do bloco faz parte do cálculo)",
+  "options.smoothgamemodeswitcher.gamemodeOrder": "Ordem dos Modos de Jogo",
+  "options.smoothgamemodeswitcher.gamemodeOrder.tooltip": "Adicione os números dos modos de jogo para alterar a ordem de troca.\n\n0: Sobrevivência\n1: Criativo\n2: Aventura\n3: Espectador\n\nApenas valores inteiros são permitidos.\nSe você adicionar mais de 4 modos de jogo, eles serão removidos.\n§lDUPLICATAS NÃO SÃO PERMITIDAS!"
+}

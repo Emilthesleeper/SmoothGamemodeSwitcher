@@ -1,0 +1,9 @@
+{
+  "smoothgamemodeswitcher.keybind.switch_gamemode": "Changement de mode de jeu fluide",
+  "smoothgamemodeswitcher.category": "Changement de mode de jeu fluide",
+  "options.smoothgamemodeswitcher.title": "Changement de mode de jeu fluide",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance": "Désactiver la tolérance de vol au-dessus des blocs",
+  "options.smoothgamemodeswitcher.disableflyingBlockTolerance.tooltip": "Désactive le mode vol lors du passage en créatif à une hauteur inférieure ou égale à celle du bloc en dessous (la hauteur du bloc fait partie du calcul)",
+  "options.smoothgamemodeswitcher.gamemodeOrder": "Ordre des modes de jeu",
+  "options.smoothgamemodeswitcher.gamemodeOrder.tooltip": "Ajoutez les numéros des modes de jeu pour modifier l'ordre de changement de mode de jeu.\n\n0 : Survie\n1 : Créatif\n2 : Aventure\n3 : Spectateur\n\nSeules les valeurs entières sont autorisées.\nSi vous ajoutez plus de 4 modes de jeu, ils seront supprimés.\n§lLES DOUBLONS NE SONT PAS AUTORISÉS !"
+}
