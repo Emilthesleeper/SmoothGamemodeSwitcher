@@ -3,7 +3,7 @@ package com.emilsleeper.smoothgamemodeswitcher;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.world.GameMode;
+import net.minecraft.world.level.GameType;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -18,9 +18,9 @@ public class ConfigHandler {
     private static final Path CONFIG_FILE = FabricLoader.getInstance().getConfigDir().resolve("smoothgamemodeswitcher.json");
 
     private static final List<Integer> DEFAULT_GAMEMODE_ORDER = Arrays.asList(
-            GameMode.SURVIVAL.ordinal(),
-            GameMode.SPECTATOR.ordinal(),
-            GameMode.CREATIVE.ordinal()
+            GameType.SURVIVAL.ordinal(),
+            GameType.SPECTATOR.ordinal(),
+            GameType.CREATIVE.ordinal()
     );
     private static List<Integer> gamemodeOrder = DEFAULT_GAMEMODE_ORDER;
     private static double defaultdisableFlyingBlockTolerance = 0.2;

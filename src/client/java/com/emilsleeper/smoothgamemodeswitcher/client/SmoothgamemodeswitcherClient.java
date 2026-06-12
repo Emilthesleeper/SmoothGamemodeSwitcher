@@ -3,90 +3,101 @@ package com.emilsleeper.smoothgamemodeswitcher.client;
 import com.emilsleeper.smoothgamemodeswitcher.ConfigHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.network.packet.c2s.play.UpdatePlayerAbilitiesC2SPacket;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameMode;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.player.LocalPlayer;
+import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.game.ServerboundPlayerAbilitiesPacket;
+import net.minecraft.world.level.GameType;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
 
 public class SmoothgamemodeswitcherClient implements ClientModInitializer {
-    private static KeyBinding switchGamemodeKey;
-    private void updateAbilitiesWithDelay(ClientPlayerEntity player, boolean flying) {
+    private static KeyMapping switchGamemodeKey;
+
+    private void updateAbilitiesWithDelay(LocalPlayer player, boolean flying) {
         new Thread(() -> {
             try {
                 Thread.sleep(41);
                 player.getAbilities().flying = flying;
-                player.sendAbilitiesUpdate();
-                player.networkHandler.sendPacket(new UpdatePlayerAbilitiesC2SPacket(player.getAbilities()));
+                player.onUpdateAbilities();
+                player.connection.send(new ServerboundPlayerAbilitiesPacket(player.getAbilities()));
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }).start();
     }
 
+    @Override
     public void onInitializeClient() {
-        System.out.println("init");
         ConfigHandler.loadConfig();
-        switchGamemodeKey = new KeyBinding(
-            "smoothgamemodeswitcher.keybind.switch_gamemode",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_X,
-            KeyBinding.Category.MISC
-        );
-        KeyBindingHelper.registerKeyBinding(switchGamemodeKey);
+
+        switchGamemodeKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
+                "smoothgamemodeswitcher.keybind.switch_gamemode",
+                InputConstants.Type.KEYSYM,
+                GLFW.GLFW_KEY_X,
+                KeyMapping.Category.MISC
+        ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (switchGamemodeKey.wasPressed()) {
-                if (client.player != null) {
-                    List<Integer> gamemodeOrder = ConfigHandler.getGamemodeOrder();
-                    GameMode currentMode = client.getInstance().interactionManager.getCurrentGameMode();
-                    int currentIndex = gamemodeOrder.indexOf(currentMode.ordinal());
-                    
-                    if (currentIndex == -1) {
-                        currentIndex = 0;
-                    }
-                    int nextIndex = (currentIndex + 1) % gamemodeOrder.size();
-                    GameMode nextMode = GameMode.byIndex(gamemodeOrder.get(nextIndex));
-                    if (nextMode.toString() == GameMode.ADVENTURE.toString()) {
-                        client.player.networkHandler.sendChatCommand("gamemode adventure");
-                        client.player.onGameModeChanged(GameMode.ADVENTURE);
-                        updateAbilitiesWithDelay(client.player, false);
-                    } if (nextMode.toString() == GameMode.SURVIVAL.toString()) {
-                        client.player.networkHandler.sendChatCommand("gamemode survival");
-                        client.player.onGameModeChanged(GameMode.SURVIVAL);
-                        updateAbilitiesWithDelay(client.player, false);
-                    } if (nextMode.toString() == GameMode.CREATIVE.toString()) {
-                        client.player.networkHandler.sendChatCommand("gamemode creative");
-                        client.player.onGameModeChanged(GameMode.CREATIVE);
-                        BlockPos block;
-                        double calculatedTolerance;
+            while (switchGamemodeKey.consumeClick()) {
+                if (client.player == null || client.gameMode == null || client.level == null) {
+                    continue;
+                }
+
+                List<Integer> gamemodeOrder = ConfigHandler.getGamemodeOrder();
+                GameType currentMode = client.gameMode.getPlayerMode();
+                int currentIndex = gamemodeOrder.indexOf(currentMode.getId());
+
+                if (currentIndex == -1) {
+                    currentIndex = 0;
+                }
+
+                int nextIndex = (currentIndex + 1) % gamemodeOrder.size();
+                GameType nextMode = GameType.byId(gamemodeOrder.get(nextIndex));
+
+                if (nextMode == GameType.ADVENTURE) {
+                    client.player.connection.sendCommand("gamemode adventure");
+                    client.player.onGameModeChanged(GameType.ADVENTURE);
+                    updateAbilitiesWithDelay(client.player, false);
+                } else if (nextMode == GameType.SURVIVAL) {
+                    client.player.connection.sendCommand("gamemode survival");
+                    client.player.onGameModeChanged(GameType.SURVIVAL);
+                    updateAbilitiesWithDelay(client.player, false);
+                } else if (nextMode == GameType.CREATIVE) {
+                    client.player.connection.sendCommand("gamemode creative");
+                    client.player.onGameModeChanged(GameType.CREATIVE);
+
+                    BlockPos block;
+                    double calculatedTolerance;
+
+                    try {
+                        block = client.player.blockPosition();
+                        calculatedTolerance = block.getY()
+                                + client.level.getBlockState(block).getCollisionShape(client.level, block).bounds().maxY
+                                + ConfigHandler.getDisableFlyingBlockTolerance();
+                    } catch (Exception e) {
                         try {
-                            block = client.player.getBlockPos();
-                            calculatedTolerance = block.getY() + client.world.getBlockState(block).getOutlineShape(client.world, block).getBoundingBox().maxY + ConfigHandler.getDisableFlyingBlockTolerance();
-                        } catch (Exception e) {
-                            try {
-                                block = client.player.getBlockPos().down();
-                                calculatedTolerance = block.getY() + client.world.getBlockState(block).getOutlineShape(client.world, block).getBoundingBox().maxY + ConfigHandler.getDisableFlyingBlockTolerance();
-                            } catch (Exception e2) {
-                                break;
-                            }
-                        }
-                        if (client.player.getY() <= calculatedTolerance) {
-                            updateAbilitiesWithDelay(client.player, false);
-                        } else {
-                            updateAbilitiesWithDelay(client.player, true);
+                            block = client.player.blockPosition().below();
+                            calculatedTolerance = block.getY()
+                                    + client.level.getBlockState(block).getCollisionShape(client.level, block).bounds().maxY
+                                    + ConfigHandler.getDisableFlyingBlockTolerance();
+                        } catch (Exception e2) {
+                            continue;
                         }
                     }
-                    if (nextMode == GameMode.SPECTATOR) {
-                        client.player.networkHandler.sendChatCommand("gamemode spectator");
-                        client.player.onGameModeChanged(GameMode.SPECTATOR);
+
+                    if (client.player.getY() <= calculatedTolerance) {
+                        updateAbilitiesWithDelay(client.player, false);
+                    } else {
                         updateAbilitiesWithDelay(client.player, true);
                     }
+                } else if (nextMode == GameType.SPECTATOR) {
+                    client.player.connection.sendCommand("gamemode spectator");
+                    client.player.onGameModeChanged(GameType.SPECTATOR);
+                    updateAbilitiesWithDelay(client.player, true);
                 }
             }
         });

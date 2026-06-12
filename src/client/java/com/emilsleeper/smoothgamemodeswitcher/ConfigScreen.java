@@ -2,8 +2,8 @@ package com.emilsleeper.smoothgamemodeswitcher;
 
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,36 +15,36 @@ public class ConfigScreen {
     public static Screen createConfigScreen(Screen parent) {
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(Text.translatable("options.smoothgamemodeswitcher.title"))
+                .setTitle(Component.translatable("options.smoothgamemodeswitcher.title"))
                 .setSavingRunnable(ConfigHandler::saveConfig);
 
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
         
         List<Integer> gamemodeOrder = ConfigHandler.getGamemodeOrder();
 
-        builder.getOrCreateCategory(Text.of(""))
+        builder.getOrCreateCategory(Component.literal(""))
             .addEntry(
                 entryBuilder.startDoubleField(
-                        Text.translatable("options.smoothgamemodeswitcher.disableflyingBlockTolerance"),
+                        Component.translatable("options.smoothgamemodeswitcher.disableflyingBlockTolerance"),
                         ConfigHandler.getDisableFlyingBlockTolerance()
                     )
                     .setDefaultValue(ConfigHandler.getDefaultDisableFlyingBlockTolerance())
                     .setMin(0.0)
                     .setMax(1.0)
                     .setSaveConsumer(ConfigHandler::setDisableFlyingBlockTolerance)
-                    .setTooltip(Text.translatable("options.smoothgamemodeswitcher.disableflyingBlockTolerance.tooltip"))
+                    .setTooltip(Component.translatable("options.smoothgamemodeswitcher.disableflyingBlockTolerance.tooltip"))
                     .build()
             )
             .addEntry(
                 entryBuilder.startIntList(
-                        Text.translatable("options.smoothgamemodeswitcher.gamemodeOrder"),
+                        Component.translatable("options.smoothgamemodeswitcher.gamemodeOrder"),
                         gamemodeOrder
                     )
                     .setDefaultValue(ConfigHandler.getDefaultGamemodeOrder())
                     .setSaveConsumer(ConfigHandler::setGamemodeOrder)
                     .setMax(4)
                     .setMin(0)
-                    .setTooltip(Text.translatable("options.smoothgamemodeswitcher.gamemodeOrder.tooltip"))
+                    .setTooltip(Component.translatable("options.smoothgamemodeswitcher.gamemodeOrder.tooltip"))
                     .build()
             );
             
