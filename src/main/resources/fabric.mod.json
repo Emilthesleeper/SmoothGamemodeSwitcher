@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "smoothgamemodeswitcher",
-  "version": "${version}",
+  "version": "1.1.1",
   "name": "Smooth Gamemode Switcher",
   "description": "A mod that let's you change gamemodes in your desired order quickly and efficiently.",
   "authors": [
@@ -31,10 +31,10 @@
   },
   "mixins": [],
   "depends": {
-    "fabricloader": ">=${loader_version}",
+    "fabricloader": ">=0.17.2",
     "fabric-api": "*",
-    "minecraft": ">=1.21 <1.22",
-    "modmenu": ">=${modmenu_version}",
-    "cloth-config": ">=${cloth_config_version}"
+    "minecraft": ">=1.21.9 <1.22",
+    "modmenu": ">=16.0.0-rc.1",
+    "cloth-config": ">=20.0.149"
   }
 }

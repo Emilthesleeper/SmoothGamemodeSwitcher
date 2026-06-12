@@ -30,13 +30,15 @@ public class SmoothgamemodeswitcherClient implements ClientModInitializer {
     }
 
     public void onInitializeClient() {
+        System.out.println("init");
         ConfigHandler.loadConfig();
-        switchGamemodeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        switchGamemodeKey = new KeyBinding(
             "smoothgamemodeswitcher.keybind.switch_gamemode",
             InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_X,
-            "smoothgamemodeswitcher.category"
-        ));
+            KeyBinding.Category.MISC
+        );
+        KeyBindingHelper.registerKeyBinding(switchGamemodeKey);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (switchGamemodeKey.wasPressed()) {
@@ -45,23 +47,20 @@ public class SmoothgamemodeswitcherClient implements ClientModInitializer {
                     GameMode currentMode = client.getInstance().interactionManager.getCurrentGameMode();
                     int currentIndex = gamemodeOrder.indexOf(currentMode.ordinal());
                     
-                    // If current mode not found in order, default to first in order
                     if (currentIndex == -1) {
                         currentIndex = 0;
                     }
-                    
-                    // Get next index, wrapping around if needed
                     int nextIndex = (currentIndex + 1) % gamemodeOrder.size();
-                    GameMode nextMode = GameMode.byId(gamemodeOrder.get(nextIndex));
-                    if (nextMode == GameMode.ADVENTURE) {
+                    GameMode nextMode = GameMode.byIndex(gamemodeOrder.get(nextIndex));
+                    if (nextMode.toString() == GameMode.ADVENTURE.toString()) {
                         client.player.networkHandler.sendChatCommand("gamemode adventure");
                         client.player.onGameModeChanged(GameMode.ADVENTURE);
                         updateAbilitiesWithDelay(client.player, false);
-                    } if (nextMode == GameMode.SURVIVAL) {
+                    } if (nextMode.toString() == GameMode.SURVIVAL.toString()) {
                         client.player.networkHandler.sendChatCommand("gamemode survival");
                         client.player.onGameModeChanged(GameMode.SURVIVAL);
                         updateAbilitiesWithDelay(client.player, false);
-                    } if (nextMode == GameMode.CREATIVE) {
+                    } if (nextMode.toString() == GameMode.CREATIVE.toString()) {
                         client.player.networkHandler.sendChatCommand("gamemode creative");
                         client.player.onGameModeChanged(GameMode.CREATIVE);
                         BlockPos block;
@@ -82,7 +81,8 @@ public class SmoothgamemodeswitcherClient implements ClientModInitializer {
                         } else {
                             updateAbilitiesWithDelay(client.player, true);
                         }
-                    } if (nextMode == GameMode.SPECTATOR) {
+                    }
+                    if (nextMode == GameMode.SPECTATOR) {
                         client.player.networkHandler.sendChatCommand("gamemode spectator");
                         client.player.onGameModeChanged(GameMode.SPECTATOR);
                         updateAbilitiesWithDelay(client.player, true);
